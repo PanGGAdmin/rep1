@@ -788,60 +788,6 @@ CREATE TABLE `requisitions_detail` (
 
 insert  into `requisitions_detail`(`serNO`,`billNo`,`prodID`,`prodName`,`predSize`,`unitName`,`sQuantity`,`currID`,`sPrice`,`amount`,`lastestCurrID`,`lastestPrice`,`lastestsPrice`,`preInDate`,`suggestPurDate`,`qtyRemain`,`itemRemark`,`tranType`,`tranNO`,`deleteStatus`) values (1,'2018050201','C01-W-HP-DC7900-307','HP DC7900CMT-NA307PA#AB2台式机','','PCS',1,'RMB',3370,3370,'RMB',3370,3370,'2018-05-02','2018-04-22',1,'itemRemark','','',1),(2,'2018050202','C01-W-HP-DC7900-308','HP DC7900CMT-NA308PA#AB2台式机','','PCS',1,'RMB',3370,3370,'RMB',3370,3370,'2018-05-02','2018-04-22',1,'itemRemark','','',1);
 
-/*Table structure for table `s_sell_ quote` */
-
-DROP TABLE IF EXISTS `s_sell_ quote`;
-
-CREATE TABLE `s_sell_ quote` (
-  `qu_id` varchar(100) NOT NULL COMMENT '1、单据号码',
-  `qu_cid` int(11) DEFAULT NULL COMMENT '2、客户编号id',
-  `qu_cname` varchar(50) DEFAULT NULL COMMENT '3、客户名称',
-  `qu_caddress` varchar(100) DEFAULT NULL COMMENT '4、送货地址（客户表中带出）',
-  `qu_date` date DEFAULT NULL COMMENT '5、单据日期',
-  `qu_effectdate` date DEFAULT NULL COMMENT '6、有效日期',
-  `qu_pricetax` int(11) DEFAULT NULL COMMENT '7、单价是否含税 (1代表是0代表否)',
-  `qu_moneytype` varchar(20) DEFAULT NULL COMMENT '8、币别',
-  `qu_ exchangerate` double DEFAULT NULL COMMENT '9、汇率',
-  `qu_peoyw_id` int(11) DEFAULT NULL COMMENT '10、业务人员id',
-  `qu_peoyw_name` varchar(50) DEFAULT NULL COMMENT '11、业务人员名称',
-  `qu_emp_id` int(11) DEFAULT NULL COMMENT '12、所属部门id ',
-  `qu_emp_name` varchar(50) DEFAULT NULL COMMENT '13、所属部门名称',
-  `qu_perzd_id` int(11) DEFAULT NULL COMMENT '14、制单人员id',
-  `qu_perzd_name` varchar(50) DEFAULT NULL COMMENT '15、制单人员名称',
-  `qu_perck_id` int(11) DEFAULT NULL COMMENT '16、审核人员id ',
-  `qu_perck_name` varchar(50) DEFAULT NULL COMMENT '17、审核人员name',
-  `qu_checkstatus` int(11) DEFAULT NULL COMMENT '18、是否审核  (1代表审核，0代表未审核)',
-  PRIMARY KEY (`qu_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Data for the table `s_sell_ quote` */
-
-/*Table structure for table `s_sell_ quoteparticular` */
-
-DROP TABLE IF EXISTS `s_sell_ quoteparticular`;
-
-CREATE TABLE `s_sell_ quoteparticular` (
-  `qp_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '栏号',
-  `qp_quid` varchar(100) DEFAULT NULL COMMENT '单据号码',
-  `qp_ materielid` varchar(50) DEFAULT NULL COMMENT '物料编号',
-  `qp_ materielname` varchar(50) DEFAULT NULL COMMENT '物料名称',
-  `qp_model` varchar(50) DEFAULT NULL COMMENT '规格型号',
-  `qp_unitname` varchar(50) DEFAULT NULL COMMENT '单位名称',
-  `qp_number` double DEFAULT NULL COMMENT '数量',
-  `qp_ discountprice` double DEFAULT NULL COMMENT '折扣前单价',
-  `qp_ discount` double DEFAULT NULL COMMENT '折数',
-  `qp_price` double DEFAULT NULL COMMENT '单价',
-  `qp_sum` double DEFAULT NULL COMMENT '金额',
-  `qp_rate` double DEFAULT NULL COMMENT '税率',
-  `qp_tatemoney` double DEFAULT NULL COMMENT '税额',
-  `qp_totalmoney` double DEFAULT NULL COMMENT '含税金额',
-  `qp_ largess` int(11) DEFAULT NULL COMMENT '赠品  （1代表是、0代表否）',
-  `qp_remark` varchar(100) DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`qp_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Data for the table `s_sell_ quoteparticular` */
-
 /*Table structure for table `s_sell_order` */
 
 DROP TABLE IF EXISTS `s_sell_order`;
@@ -901,6 +847,64 @@ CREATE TABLE `s_sell_orderparticular` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `s_sell_orderparticular` */
+
+/*Table structure for table `s_sell_quote` */
+
+DROP TABLE IF EXISTS `s_sell_quote`;
+
+CREATE TABLE `s_sell_quote` (
+  `quId` varchar(100) NOT NULL COMMENT '1、单据号码',
+  `quCid` int(11) DEFAULT NULL COMMENT '2、客户编号id',
+  `quCname` varchar(50) DEFAULT NULL COMMENT '3、客户名称',
+  `quCaddress` varchar(100) DEFAULT NULL COMMENT '4、送货地址（客户表中带出）',
+  `quDate` date DEFAULT NULL COMMENT '5、单据日期',
+  `quEffectdate` date DEFAULT NULL COMMENT '6、有效日期',
+  `quPricetax` int(11) DEFAULT NULL COMMENT '7、单价是否含税 (1代表是0代表否)',
+  `quMoneytype` varchar(20) DEFAULT NULL COMMENT '8、币别',
+  `quExchangerate` double DEFAULT NULL COMMENT '9、汇率',
+  `quPeoywId` int(11) DEFAULT NULL COMMENT '10、业务人员id',
+  `quPeoywName` varchar(50) DEFAULT NULL COMMENT '11、业务人员名称',
+  `quEmpId` int(11) DEFAULT NULL COMMENT '12、所属部门id ',
+  `quEmpName` varchar(50) DEFAULT NULL COMMENT '13、所属部门名称',
+  `quPerzdId` int(11) DEFAULT NULL COMMENT '14、制单人员id',
+  `quPerzdName` varchar(50) DEFAULT NULL COMMENT '15、制单人员名称',
+  `quPerckId` int(11) DEFAULT NULL COMMENT '16、审核人员id ',
+  `quPerckName` varchar(50) DEFAULT NULL COMMENT '17、审核人员name',
+  `quCheckstatus` int(11) DEFAULT NULL COMMENT '18、是否审核  (1代表审核，0代表未审核)',
+  PRIMARY KEY (`quId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `s_sell_quote` */
+
+insert  into `s_sell_quote`(`quId`,`quCid`,`quCname`,`quCaddress`,`quDate`,`quEffectdate`,`quPricetax`,`quMoneytype`,`quExchangerate`,`quPeoywId`,`quPeoywName`,`quEmpId`,`quEmpName`,`quPerzdId`,`quPerzdName`,`quPerckId`,`quPerckName`,`quCheckstatus`) values ('20180512001',12,'21','21','2018-05-12','2018-05-12',21,'21',21,21,'21',21,'12',12,'21',21,'12',12),('20180512002',12,'12','12','2018-05-12','2018-05-12',12,'12',12,NULL,NULL,NULL,'2',NULL,NULL,NULL,NULL,NULL);
+
+/*Table structure for table `s_sell_quoteparticular` */
+
+DROP TABLE IF EXISTS `s_sell_quoteparticular`;
+
+CREATE TABLE `s_sell_quoteparticular` (
+  `qpId` int(11) NOT NULL AUTO_INCREMENT COMMENT '栏号',
+  `qpQuid` varchar(100) DEFAULT NULL COMMENT '单据号码',
+  `qpMaterielid` varchar(50) DEFAULT NULL COMMENT '物料编号',
+  `qpMaterielname` varchar(50) DEFAULT NULL COMMENT '物料名称',
+  `qpModel` varchar(50) DEFAULT NULL COMMENT '规格型号',
+  `qpUnitname` varchar(50) DEFAULT NULL COMMENT '单位名称',
+  `qpNumber` double DEFAULT NULL COMMENT '数量',
+  `qpDiscountprice` double DEFAULT NULL COMMENT '折扣前单价',
+  `qpDiscount` double DEFAULT NULL COMMENT '折数',
+  `qpPrice` double DEFAULT NULL COMMENT '单价',
+  `qpSum` double DEFAULT NULL COMMENT '金额',
+  `qpRate` double DEFAULT NULL COMMENT '税率',
+  `qpTatemoney` double DEFAULT NULL COMMENT '税额',
+  `qpTotalmoney` double DEFAULT NULL COMMENT '含税金额',
+  `qpLargess` int(11) DEFAULT NULL COMMENT '赠品  （1代表是、0代表否）',
+  `qpRemark` varchar(100) DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`qpId`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+/*Data for the table `s_sell_quoteparticular` */
+
+insert  into `s_sell_quoteparticular`(`qpId`,`qpQuid`,`qpMaterielid`,`qpMaterielname`,`qpModel`,`qpUnitname`,`qpNumber`,`qpDiscountprice`,`qpDiscount`,`qpPrice`,`qpSum`,`qpRate`,`qpTatemoney`,`qpTotalmoney`,`qpLargess`,`qpRemark`) values (1,'20180512001','123','213','213','123',21,21,21,21,1,NULL,NULL,NULL,NULL,NULL),(2,'20180512002','23','213','132','32',21,21,2,12,1,NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `sales_detail` */
 
